@@ -1,7 +1,6 @@
-import "./App.css";
+import { ParentProps } from "solid-js";
+import { Layout } from "./layout/Layout";
 
-function App() {
-  return <></>;
+export function App(props: ParentProps) {
+  return <Layout>{props.children}</Layout>;
 }
-
-export default App;

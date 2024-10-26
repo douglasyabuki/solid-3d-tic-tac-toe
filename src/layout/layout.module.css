@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100dvw;
+  height: auto;
+}

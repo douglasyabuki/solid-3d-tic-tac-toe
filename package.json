@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@solidjs/router": "^0.14.10",
     "solid-3d-tic-tac-toe": "file:",
     "solid-js": "^1.9.2"
   },
