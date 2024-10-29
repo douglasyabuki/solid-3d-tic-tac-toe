@@ -1,0 +1,29 @@
+.board {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.board:nth-child(1) {
+  transform: translateZ(100px);
+}
+.board:nth-child(2) {
+  transform: translateZ(0);
+}
+.board:nth-child(3) {
+  transform: translateZ(-100px);
+}
+
+.board.translated-1 {
+  transform: translateY(-300px) translateZ(100px) !important;
+}
+
+.board.translated-2 {
+  transform: translateY(-300px) translateZ(0) !important;
+}
+
+.board.translated-3 {
+  transform: translateY(-300px) translateZ(-100px) !important;
+}
