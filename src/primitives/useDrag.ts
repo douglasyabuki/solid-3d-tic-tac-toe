@@ -2,23 +2,19 @@ import { createSignal, onCleanup, onMount } from "solid-js";
 
 export function useDrag(elementSelector: string) {
   const [isDragging, setIsDragging] = createSignal(false);
-  const [previousMousePosition, setPreviousMousePosition] = createSignal({
-    x: 0,
-    y: 0,
-  });
+  const [previousPosition, setPreviousPosition] = createSignal({ x: 0, y: 0 });
+
   let rotationX = -20;
   let rotationY = -45;
 
-  const onMouseDown = (e: MouseEvent) => {
+  const startDrag = (x: number, y: number) => {
     setIsDragging(true);
-    setPreviousMousePosition({ x: e.clientX, y: e.clientY });
+    setPreviousPosition({ x, y });
   };
 
-  const onMouseMove = (e: MouseEvent) => {
-    if (!isDragging()) return;
-
-    const deltaX = e.clientX - previousMousePosition().x;
-    const deltaY = e.clientY - previousMousePosition().y;
+  const updateDrag = (x: number, y: number) => {
+    const deltaX = x - previousPosition().x;
+    const deltaY = y - previousPosition().y;
     rotationX -= deltaY * 0.5;
     rotationY += deltaX * 0.5;
 
@@ -27,22 +23,46 @@ export function useDrag(elementSelector: string) {
       element.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
     }
 
-    setPreviousMousePosition({ x: e.clientX, y: e.clientY });
+    setPreviousPosition({ x, y });
   };
 
-  const onMouseUp = () => {
+  const endDrag = () => {
     setIsDragging(false);
   };
+
+  const onMouseDown = (e: MouseEvent) => startDrag(e.clientX, e.clientY);
+  const onMouseMove = (e: MouseEvent) =>
+    isDragging() && updateDrag(e.clientX, e.clientY);
+  const onMouseUp = () => endDrag();
+
+  const onTouchStart = (e: TouchEvent) => {
+    const touch = e.touches[0];
+    startDrag(touch.clientX, touch.clientY);
+  };
+  const onTouchMove = (e: TouchEvent) => {
+    if (!isDragging()) return;
+    const touch = e.touches[0];
+    updateDrag(touch.clientX, touch.clientY);
+  };
+  const onTouchEnd = () => endDrag();
 
   onMount(() => {
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
 
+    window.addEventListener("touchstart", onTouchStart);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onTouchEnd);
+
     onCleanup(() => {
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
+
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
     });
   });
 
