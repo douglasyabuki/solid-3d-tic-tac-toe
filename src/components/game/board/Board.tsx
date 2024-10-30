@@ -5,9 +5,10 @@ import { Cell } from "./cell/Cell";
 interface Board {
   board: string[][];
   boardId: number;
+  handleCellClick: (boardId: number, rowId: number, colId: number) => void;
 }
 
-export function Board({ board, boardId }: Board) {
+export function Board({ board, boardId, handleCellClick }: Board) {
   const [isTranslated, setIsTranslated] = createSignal(false);
 
   const handleContextMenu = (e: MouseEvent) => {
@@ -26,9 +27,8 @@ export function Board({ board, boardId }: Board) {
         row.map((col, colId) => (
           <Cell
             value={col}
-            rowId={rowId}
-            colId={colId}
             handleContextMenu={handleContextMenu}
+            handleClick={() => handleCellClick(boardId, rowId, colId)}
           />
         ))
       )}
