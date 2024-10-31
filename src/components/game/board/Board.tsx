@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { Accessor } from "solid-js";
 import style from "./board.module.css";
 import { Cell } from "./cell/Cell";
 
@@ -6,21 +6,27 @@ interface Board {
   board: string[][];
   boardId: number;
   handleCellClick: (boardId: number, rowId: number, colId: number) => void;
+  onTranslate: () => void;
+  translatedBoards: Accessor<boolean[]>;
 }
 
-export function Board({ board, boardId, handleCellClick }: Board) {
-  const [isTranslated, setIsTranslated] = createSignal(false);
-
+export function Board({
+  board,
+  boardId,
+  handleCellClick,
+  onTranslate,
+  translatedBoards,
+}: Board) {
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
-    setIsTranslated(!isTranslated());
+    onTranslate();
   };
 
   return (
     <div
       classList={{
         [style.board]: true,
-        [style[`translated-${boardId + 1}`]]: !!isTranslated(),
+        [style[`translated-${boardId + 1}`]]: !!translatedBoards()[boardId],
       }}
     >
       {board.map((row, rowId) =>

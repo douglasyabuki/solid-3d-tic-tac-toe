@@ -1,5 +1,6 @@
 import { createSignal } from "solid-js";
 import { useDrag } from "../../primitives/useDrag";
+import { checkWin } from "../../utils/util-game";
 import { Board } from "./board/Board";
 import style from "./game.module.css";
 
@@ -15,6 +16,9 @@ export function Game() {
           .map(() => Array(3).fill(""))
       )
   );
+  const [translatedBoards, setTranslatedBoards] = createSignal<boolean[]>(
+    Array(3).fill(false)
+  );
   const [currentPlayer, setCurrentPlayer] = createSignal<Players>("blue");
   const { transformStyle, cursorStyle } = useDrag(`.${style.game}`);
 
@@ -23,8 +27,18 @@ export function Game() {
 
     const newBoards = [...boards()];
     newBoards[boardId][rowId][colId] = currentPlayer();
+    const winner = checkWin(newBoards);
+    if (winner) {
+      return;
+    }
     setBoards(newBoards);
     setCurrentPlayer(currentPlayer() === "blue" ? "red" : "blue");
+  }
+
+  function onTranslate(boardId: number) {
+    setTranslatedBoards((prev) =>
+      prev.map((item, id) => (id === boardId ? !item : item))
+    );
   }
 
   return (
@@ -40,6 +54,8 @@ export function Game() {
           board={board}
           boardId={boardId}
           handleCellClick={handleCellClick}
+          onTranslate={() => onTranslate(boardId)}
+          translatedBoards={translatedBoards}
         />
       ))}
     </div>
