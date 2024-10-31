@@ -24,13 +24,11 @@ export function Game() {
 
   function handleCellClick(boardId: number, rowId: number, colId: number) {
     if (boards()[boardId][rowId][colId]) return;
-
+    if (checkWin(boards())) {
+      return
+    }
     const newBoards = [...boards()];
     newBoards[boardId][rowId][colId] = currentPlayer();
-    const winner = checkWin(newBoards);
-    if (winner) {
-      return;
-    }
     setBoards(newBoards);
     setCurrentPlayer(currentPlayer() === "blue" ? "red" : "blue");
   }
