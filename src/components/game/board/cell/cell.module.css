@@ -24,11 +24,11 @@
   background: rgba(200, 200, 255, 0.9);
 }
 
-.face.marked.player1 {
+.face.marked.player-red {
   background: rgba(255, 0, 0, 0.7);
 }
 
-.face.marked.player2 {
+.face.marked.player-blue {
   background: rgba(0, 0, 255, 0.7);
 }
 

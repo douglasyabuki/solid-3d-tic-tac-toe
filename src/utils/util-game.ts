@@ -1,7 +1,15 @@
+export type Players = "blue" | "red";
+export type CellValue = Players | ''
+
+export const players: Record<Players, Players> = {
+  blue: "blue",
+  red: "red",
+};
+
 function checkLine(
-  boards: string[][][],
+  boards: CellValue[][][],
   positions: [number, number, number][] | number[][]
-): string | null {
+): Players | null {
   const firstValue = boards[positions[0][0]][positions[0][1]][positions[0][2]];
   if (firstValue === "") return null;
 
@@ -10,7 +18,7 @@ function checkLine(
     : null;
 }
 
-export function checkWin(boards: string[][][]): string | null {
+export function checkWin(boards: CellValue[][][]): Players | null {
   const size = boards.length;
 
   for (let currentBoard = 0; currentBoard < size; currentBoard++) {

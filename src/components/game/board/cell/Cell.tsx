@@ -19,7 +19,7 @@ export function Cell({ value, handleContextMenu, handleClick }: Cell) {
           [style.face]: true,
           [style.front]: true,
           [style.marked]: !!value,
-          [style[`player${value === "red" ? "1" : "2"}`]]: !!value,
+          [style[`player-${value}`]]: !!value,
         }}
       ></div>
       <div
@@ -27,7 +27,7 @@ export function Cell({ value, handleContextMenu, handleClick }: Cell) {
           [style.face]: true,
           [style.back]: true,
           [style.marked]: !!value,
-          [style[`player${value === "red" ? "1" : "2"}`]]: !!value,
+          [style[`player-${value}`]]: !!value,
         }}
       ></div>
       <div
@@ -35,7 +35,7 @@ export function Cell({ value, handleContextMenu, handleClick }: Cell) {
           [style.face]: true,
           [style.top]: true,
           [style.marked]: !!value,
-          [style[`player${value === "red" ? "1" : "2"}`]]: !!value,
+          [style[`player-${value}`]]: !!value,
         }}
       ></div>
       <div
@@ -43,7 +43,7 @@ export function Cell({ value, handleContextMenu, handleClick }: Cell) {
           [style.face]: true,
           [style.bottom]: true,
           [style.marked]: !!value,
-          [style[`player${value === "red" ? "1" : "2"}`]]: !!value,
+          [style[`player-${value}`]]: !!value,
         }}
       ></div>
       <div
@@ -51,7 +51,7 @@ export function Cell({ value, handleContextMenu, handleClick }: Cell) {
           [style.face]: true,
           [style.left]: true,
           [style.marked]: !!value,
-          [style[`player${value === "red" ? "1" : "2"}`]]: !!value,
+          [style[`player-${value}`]]: !!value,
         }}
       ></div>
       <div
@@ -59,7 +59,7 @@ export function Cell({ value, handleContextMenu, handleClick }: Cell) {
           [style.face]: true,
           [style.right]: true,
           [style.marked]: !!value,
-          [style[`player${value === "red" ? "1" : "2"}`]]: !!value,
+          [style[`player-${value}`]]: !!value,
         }}
       ></div>
     </div>

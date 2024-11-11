@@ -1,0 +1,35 @@
+.scoreboard-container {
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(31, 55, 86, 1);
+  background: rgb(97, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(97, 0, 0, 0.25) 10%,
+    rgba(0, 5, 97, 0.25) 90%
+  );
+  color: #ffffff;
+  cursor: default;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  padding-bottom: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.25rem;
+  user-select: none;
+  width: 300px;
+}
+
+.scoreboard {
+  align-items: center;
+  background: rgba(20, 21, 57, 0.375);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: start;
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 1rem;
+  gap: 16px;
+}
