@@ -12,7 +12,7 @@ export function Scoreboard({ currentPlayer, score }: Board) {
   return (
     <div class={style["scoreboard-container"]}>
       <div class={style["scoreboard"]}>
-        <h3>Scoreboard</h3>
+        <h3>3D Tic-Tac-Toe</h3>
         <div
           style={{
             display: "flex",
