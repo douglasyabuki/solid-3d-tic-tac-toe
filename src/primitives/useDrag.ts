@@ -30,13 +30,27 @@ export function useDrag(elementSelector: string) {
     setIsDragging(false);
   };
 
-  const onMouseDown = (e: MouseEvent) => startDrag(e.clientX, e.clientY);
+  const onMouseDown = (e: MouseEvent) => {
+    if (
+      e.target instanceof HTMLElement &&
+      e.target.className.includes("scoreboard")
+    ) {
+      return;
+    }
+    startDrag(e.clientX, e.clientY);
+  };
   const onMouseMove = (e: MouseEvent) =>
     isDragging() && updateDrag(e.clientX, e.clientY);
   const onMouseUp = () => endDrag();
 
   const onTouchStart = (e: TouchEvent) => {
     const touch = e.touches[0];
+    if (
+      touch.target instanceof HTMLElement &&
+      touch.target.className.includes("scoreboard")
+    ) {
+      return;
+    }
     startDrag(touch.clientX, touch.clientY);
   };
   const onTouchMove = (e: TouchEvent) => {
