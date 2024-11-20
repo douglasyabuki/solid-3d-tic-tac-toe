@@ -3,23 +3,23 @@ import style from "./cell.module.css";
 
 interface Cell {
   value: string;
-  handleContextMenu: (e: MouseEvent) => void;
-  handleClick: () => void;
+  onContextMenu: (e: MouseEvent) => void;
+  onClick: () => void;
   boardSize: Accessor<Number>;
 }
 
 export function Cell({
   value,
-  handleContextMenu,
-  handleClick,
+  onContextMenu,
+  onClick,
   boardSize,
 }: Cell) {
   return (
     <div
       role="button"
       classList={{ [style.cell]: true, [style[`size-${boardSize()}`]]: true }}
-      onContextMenu={handleContextMenu}
-      onClick={handleClick}
+      onContextMenu={onContextMenu}
+      onClick={onClick}
     >
       <div
         classList={{

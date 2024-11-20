@@ -6,7 +6,7 @@ interface Board {
   board: string[][];
   boardId: number;
   boardSize: Accessor<Number>;
-  handleCellClick: (boardId: number, rowId: number, colId: number) => void;
+  onCellClick: (boardId: number, rowId: number, colId: number) => void;
   onTranslate: () => void;
   translatedBoards: Accessor<boolean[]>;
 }
@@ -15,11 +15,11 @@ export function Board({
   board,
   boardId,
   boardSize,
-  handleCellClick,
+  onCellClick,
   onTranslate,
   translatedBoards,
 }: Board) {
-  const handleContextMenu = (e: MouseEvent) => {
+  const onContextMenu = (e: MouseEvent) => {
     e.preventDefault();
     onTranslate();
   };
@@ -36,8 +36,8 @@ export function Board({
         row.map((col, colId) => (
           <Cell
             value={col}
-            handleContextMenu={handleContextMenu}
-            handleClick={() => handleCellClick(boardId, rowId, colId)}
+            onContextMenu={onContextMenu}
+            onClick={() => onCellClick(boardId, rowId, colId)}
             boardSize={boardSize}
           />
         ))
