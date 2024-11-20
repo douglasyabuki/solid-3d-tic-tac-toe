@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
 }
-button {
+
+.board-size-switcher button {
   --b: 3px;
   --s: 0.45em;
   --color: #ffffff50;
@@ -30,15 +31,15 @@ button {
   touch-action: manipulation;
 }
 
-button:hover,
-button:focus-visible {
+.board-size-switcher button:hover,
+.board-size-switcher button:focus-visible {
   --_p: 0px;
   color: #ffffffff;
   outline-color: var(--color);
   outline-offset: 0.05em;
 }
 
-button:active {
+.board-size-switcher button:active {
   background: var(--color);
   color: #fff;
 }
