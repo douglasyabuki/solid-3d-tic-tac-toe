@@ -1,0 +1,48 @@
+.view-mode-switcher {
+  position: absolute;
+  right: 1.25rem;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-mode-switcher button {
+  --color: #ffffff50;
+  --b: 3px;
+  letter-spacing: 1px;
+  outline: 0;
+  border: 1px solid #ffffff50;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--color);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border-radius: 4px;
+  outline: var(--b) solid #0000;
+  outline-offset: 0.6em;
+  transition: 300ms;
+}
+
+.view-mode-switcher button:after {
+  content: "";
+  background: var(--color);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 300ms;
+}
+
+.view-mode-switcher button:active {
+  scale: 90%;
+  color: #ffffffff;
+}
+
+.view-mode-switcher button:hover:after {
+  top: 0px;
+  left: 0px;
+}
