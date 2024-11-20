@@ -1,4 +1,5 @@
 import { Accessor } from "solid-js";
+import { ViewMode } from "../../../primitives/useViewMode";
 import style from "./board.module.css";
 import { Cell } from "./cell/Cell";
 
@@ -9,6 +10,7 @@ interface Board {
   onCellClick: (boardId: number, rowId: number, colId: number) => void;
   onTranslate: () => void;
   translatedBoards: Accessor<boolean[]>;
+  viewMode: Accessor<ViewMode>;
 }
 
 export function Board({
@@ -18,6 +20,7 @@ export function Board({
   onCellClick,
   onTranslate,
   translatedBoards,
+  viewMode,
 }: Board) {
   const onContextMenu = (e: MouseEvent) => {
     e.preventDefault();
@@ -35,10 +38,11 @@ export function Board({
       {board.map((row, rowId) =>
         row.map((col, colId) => (
           <Cell
-            value={col}
-            onContextMenu={onContextMenu}
-            onClick={() => onCellClick(boardId, rowId, colId)}
             boardSize={boardSize}
+            onClick={() => onCellClick(boardId, rowId, colId)}
+            onContextMenu={onContextMenu}
+            value={col}
+            viewMode={viewMode}
           />
         ))
       )}

@@ -3,6 +3,7 @@ import { useBoards } from "../../primitives/useBoards";
 import { useDrag } from "../../primitives/useDrag";
 import { usePlayers } from "../../primitives/usePlayers";
 import { useScore } from "../../primitives/useScore";
+import { useViewMode } from "../../primitives/useViewMode";
 import { Board } from "./board/Board";
 import style from "./game.module.css";
 import { Scoreboard } from "./scoreboard/Scoreboard";
@@ -15,6 +16,7 @@ export function Game() {
   const { currentPlayer, switchPlayer } = usePlayers();
   const { score, resetScore, winner } = useScore(boards);
   const { transformStyle, cursorStyle } = useDrag(`.${style.game}`);
+  const { viewMode, changeViewMode } = useViewMode()
 
   function changeBoardSize(newSize: number) {
     setBoardSize(newSize);
@@ -36,9 +38,11 @@ export function Game() {
       <div class={style["game-container"]}>
         <Scoreboard
           boardSize={boardSize}
+          changeBoardSize={changeBoardSize}
+          changeViewMode={changeViewMode}
           currentPlayer={currentPlayer}
           score={score}
-          changeBoardSize={changeBoardSize}
+          viewMode={viewMode}
         />
         <div
           class={style.game}
@@ -55,6 +59,7 @@ export function Game() {
               onTranslate={() => translateBoard(boardId)}
               translatedBoards={translatedBoards}
               boardSize={boardSize}
+              viewMode={viewMode}
             />
           ))}
         </div>

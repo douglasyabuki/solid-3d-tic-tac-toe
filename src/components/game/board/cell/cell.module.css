@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   font-size: 2em;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   user-select: none;
   transition: background-color 0.3s;
@@ -38,6 +38,13 @@
 
 .face.marked.player-blue {
   background: rgba(0, 0, 255, 0.7);
+}
+
+.face.front,
+.face.back {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
 /* Face transforms */
@@ -59,6 +66,28 @@
 .face.size-3.bottom {
   transform: rotateX(-90deg) translateZ(50px);
 }
+.face.size-3.front.compact {
+  transform: rotateY(0deg) translateZ(2.5px);
+}
+.face.size-3.back.compact {
+  transform: rotateY(180deg) translateZ(2.5px);
+}
+.face.size-3.right.compact {
+  width: 5px;
+  transform: rotateY(90deg) translateZ(95px);
+}
+.face.size-3.left.compact {
+  width: 5px;
+  transform: rotateY(-90deg) translateZ(0px);
+}
+.face.size-3.top.compact {
+  height: 5px;
+  transform: rotateX(90deg) translateZ(0px);
+}
+.face.size-3.bottom.compact {
+  height: 5px;
+  transform: rotateX(-90deg) translateZ(0px);
+}
 
 /* Face transforms */
 .face.size-4.front {
@@ -78,6 +107,28 @@
 }
 .face.size-4.bottom {
   transform: rotateX(-90deg) translateZ(37.5px);
+}
+.face.size-4.front.compact {
+  transform: rotateY(0deg) translateZ(2.5px);
+}
+.face.size-4.back.compact {
+  transform: rotateY(180deg) translateZ(2.5px);
+}
+.face.size-4.right.compact {
+  width: 5px;
+  transform: rotateY(90deg) translateZ(70px);
+}
+.face.size-4.left.compact {
+  width: 5px;
+  transform: rotateY(-90deg) translateZ(0px);
+}
+.face.size-4.top.compact {
+  height: 5px;
+  transform: rotateX(90deg) translateZ(0px);
+}
+.face.size-4.bottom.compact {
+  height: 5px;
+  transform: rotateX(-90deg) translateZ(0px);
 }
 
 /* Cell positions within board */

@@ -19,6 +19,7 @@
   padding-top: 0.25rem;
   user-select: none;
   width: 300px;
+  position: relative;
 }
 
 .scoreboard {
