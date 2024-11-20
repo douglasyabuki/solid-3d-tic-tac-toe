@@ -1,7 +1,7 @@
 import { Accessor } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Players } from "../../../utils/util-game";
-import style from "./winner.module.css";
+import style from "./winner-dialog.module.css";
 
 interface WinnerDialog {
   winner: Accessor<Players | null>;
