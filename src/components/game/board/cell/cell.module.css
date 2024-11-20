@@ -1,8 +1,16 @@
 .cell {
-  width: 100px;
-  height: 100px;
   position: absolute;
   transform-style: preserve-3d;
+}
+
+.cell.size-3 {
+  width: 100px;
+  height: 100px;
+}
+
+.cell.size-4 {
+  width: 75px;
+  height: 75px;
 }
 
 .face {
@@ -33,50 +41,120 @@
 }
 
 /* Face transforms */
-.front {
+.face.size-3.front {
   transform: rotateY(0deg) translateZ(50px);
 }
-.back {
+.face.size-3.back {
   transform: rotateY(180deg) translateZ(50px);
 }
-.right {
+.face.size-3.right {
   transform: rotateY(90deg) translateZ(50px);
 }
-.left {
+.face.size-3.left {
   transform: rotateY(-90deg) translateZ(50px);
 }
-.top {
+.face.size-3.top {
   transform: rotateX(90deg) translateZ(50px);
 }
-.bottom {
+.face.size-3.bottom {
   transform: rotateX(-90deg) translateZ(50px);
 }
 
+/* Face transforms */
+.face.size-4.front {
+  transform: rotateY(0deg) translateZ(37.5px);
+}
+.face.size-4.back {
+  transform: rotateY(180deg) translateZ(37.5px);
+}
+.face.size-4.right {
+  transform: rotateY(90deg) translateZ(37.5px);
+}
+.face.size-4.left {
+  transform: rotateY(-90deg) translateZ(37.5px);
+}
+.face.size-4.top {
+  transform: rotateX(90deg) translateZ(37.5px);
+}
+.face.size-4.bottom {
+  transform: rotateX(-90deg) translateZ(37.5px);
+}
+
 /* Cell positions within board */
-.cell:nth-child(1) {
+.size-3:nth-child(1) {
   transform: translate(0, 0);
 }
-.cell:nth-child(2) {
+.size-3:nth-child(2) {
   transform: translate(100px, 0);
 }
-.cell:nth-child(3) {
+.size-3:nth-child(3) {
   transform: translate(200px, 0);
 }
-.cell:nth-child(4) {
+.size-3:nth-child(4) {
   transform: translate(0, 100px);
 }
-.cell:nth-child(5) {
+.size-3:nth-child(5) {
   transform: translate(100px, 100px);
 }
-.cell:nth-child(6) {
+.size-3:nth-child(6) {
   transform: translate(200px, 100px);
 }
-.cell:nth-child(7) {
+.size-3:nth-child(7) {
   transform: translate(0, 200px);
 }
-.cell:nth-child(8) {
+.size-3:nth-child(8) {
   transform: translate(100px, 200px);
 }
-.cell:nth-child(9) {
+.size-3:nth-child(9) {
   transform: translate(200px, 200px);
+}
+
+/* Cell positions within board */
+.size-4:nth-child(1) {
+  transform: translate(0, 0);
+}
+.size-4:nth-child(2) {
+  transform: translate(75px, 0);
+}
+.size-4:nth-child(3) {
+  transform: translate(150px, 0);
+}
+.size-4:nth-child(4) {
+  transform: translate(225px, 0);
+}
+.size-4:nth-child(5) {
+  transform: translate(0, 75px);
+}
+.size-4:nth-child(6) {
+  transform: translate(75px, 75px);
+}
+.size-4:nth-child(7) {
+  transform: translate(150px, 75px);
+}
+.size-4:nth-child(8) {
+  transform: translate(225px, 75px);
+}
+.size-4:nth-child(9) {
+  transform: translate(0, 150px);
+}
+.size-4:nth-child(10) {
+  transform: translate(75px, 150px);
+}
+.size-4:nth-child(11) {
+  transform: translate(150px, 150px);
+}
+.size-4:nth-child(12) {
+  transform: translate(225px, 150px);
+}
+.size-4:nth-child(13) {
+  transform: translate(0, 225px);
+}
+.size-4:nth-child(14) {
+  transform: translate(75px, 225px);
+}
+.size-4:nth-child(15) {
+  transform: translate(150px, 225px);
+}
+.size-4:nth-child(16) {
+  transform: translate(225px, 225px);
 }

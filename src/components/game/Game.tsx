@@ -6,24 +6,27 @@ import style from "./game.module.css";
 import { Scoreboard } from "./scoreboard/Scoreboard";
 import { WinnerDialog } from "./winner-dialog/WinnerDialog";
 
+const initialScore: Record<Players, number> = {
+  blue: 0,
+  red: 0,
+};
+
 export function Game() {
+  const [boardSize, setBoardSize] = createSignal(3);
   const [boards, setBoards] = createSignal<CellValue[][][]>(
-    Array(3)
+    Array(boardSize())
       .fill(0)
       .map(() =>
-        Array(3)
+        Array(boardSize())
           .fill(0)
-          .map(() => Array(3).fill(""))
+          .map(() => Array(boardSize()).fill(""))
       )
   );
   const [translatedBoards, setTranslatedBoards] = createSignal<boolean[]>(
-    Array(3).fill(false)
+    Array(boardSize()).fill(false)
   );
   const [currentPlayer, setCurrentPlayer] = createSignal<Players>("blue");
-  const [score, setScore] = createSignal<Record<Players, number>>({
-    blue: 0,
-    red: 0,
-  });
+  const [score, setScore] = createSignal(initialScore);
   const [winner, setWinner] = createSignal<Players | null>(null);
   const { transformStyle, cursorStyle } = useDrag(`.${style.game}`);
 
@@ -40,15 +43,28 @@ export function Game() {
 
   function startNewGame() {
     setBoards(
-      Array(3)
+      Array(boardSize())
         .fill(0)
         .map(() =>
-          Array(3)
+          Array(boardSize())
             .fill(0)
-            .map(() => Array(3).fill(""))
+            .map(() => Array(boardSize()).fill(""))
         )
     );
-    setTranslatedBoards(Array(3).fill(false));
+    setTranslatedBoards(Array(boardSize()).fill(false));
+  }
+
+  function resetScore() {
+    setScore({
+      blue: 0,
+      red: 0,
+    });
+  }
+
+  function changeBoardSize(newSize: number) {
+    setBoardSize(newSize);
+    startNewGame();
+    resetScore();
   }
 
   function handleCellClick(boardId: number, rowId: number, colId: number) {
@@ -71,7 +87,12 @@ export function Game() {
   return (
     <>
       <div class={style["game-container"]}>
-        <Scoreboard currentPlayer={currentPlayer} score={score} />
+        <Scoreboard
+          boardSize={boardSize}
+          currentPlayer={currentPlayer}
+          score={score}
+          changeBoardSize={changeBoardSize}
+        />
         <div
           class={style.game}
           style={{
@@ -86,6 +107,7 @@ export function Game() {
               handleCellClick={handleCellClick}
               onTranslate={() => onTranslate(boardId)}
               translatedBoards={translatedBoards}
+              boardSize={boardSize}
             />
           ))}
         </div>
