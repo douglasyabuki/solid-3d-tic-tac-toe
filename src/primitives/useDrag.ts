@@ -59,6 +59,7 @@ export function useDrag(elementSelector: string) {
     updateDrag(touch.clientX, touch.clientY);
   };
   const onTouchEnd = () => endDrag();
+  const onContextMenu = (e: MouseEvent) => e.preventDefault();
 
   onMount(() => {
     window.addEventListener("mousedown", onMouseDown);
@@ -68,6 +69,7 @@ export function useDrag(elementSelector: string) {
     window.addEventListener("touchstart", onTouchStart);
     window.addEventListener("touchmove", onTouchMove);
     window.addEventListener("touchend", onTouchEnd);
+    window.addEventListener("contextmenu", onContextMenu);
 
     onCleanup(() => {
       window.removeEventListener("mousedown", onMouseDown);
@@ -77,6 +79,7 @@ export function useDrag(elementSelector: string) {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("contextmenu", onContextMenu);
     });
   });
 
